@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="my_light_blue">#3198b0</color>
+    <color name="my_light_gray">#f5f5f5</color>
+    <color name="my_orange">#de6d0f</color>
+    <color name="dark_yellow">#E7B63F</color>
+    <color name="dark_green">#52794A</color>
+    <color name="darker_blue">#3465A4</color>
+    <color name="light_blue">#729FCF</color>
+    <color name="Red">#FF0000</color>
+    <color name="mouse">#AAAAAA</color>
+    <color name="Blue">#0000FF</color>
+    <color name="Fuchsia">#FF00FF</color>
+    <color name="Black">#000000</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Grey">#808080</color>
+    <color name="Green">#347C17</color>
+    <color name="footer">#eeeeee</color>
+    <color name="theme">#19350f</color>
+    <color name="blue2">#040404</color>
+    <color name="blue25">#706f74</color>
+    <color name="TitleContent">#751819</color>
+    <color name="listBG">#008699</color>
+    <color name="media_controller_text_color">#FFFFFF</color>
+    <color name="media_controller_bg_color">#5f5f5f</color>
+    <color name="seekbar_bg">#141414</color>
+    <color name="seekbar_progress">#a53130</color>
+    <color name="seekbar_sec_progress">#875e5e</color>
+
+    <!-- Color -->
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_column">#c7c7c7</color>
+    <color name="transparent">#00000000</color>
+
+</resources>

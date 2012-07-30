@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,16 +23,16 @@ public class NoteListActivity extends Activity {
 		setContentView(R.layout.note_list);
 
 		mListView = (ListView) findViewById(R.id.note_list);
+		
 		ArrayList<NoteData> notes = new ArrayList<NoteData>();
-		notes.add(new NoteData(
-				"We cannot solve our problems with the same thinking we used when we created them - Albert Einstein",
-				1));
+		//notes.add(new NoteData(
+		// "We cannot solve our problems with the same thinking we used when we created them - Albert Einstein",
+		// 1));
 
 		NoteListAdapter adapter = new NoteListAdapter(NoteListActivity.this,
 				R.layout.note_list_item, notes);
 		mListView.setAdapter(adapter);
 	}
-
 }
 
 class NoteListAdapter extends ArrayAdapter<NoteData> {

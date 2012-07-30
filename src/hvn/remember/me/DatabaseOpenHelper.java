@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 3;
-	private static final String DATABASE_NAME = "RememberMe.db";
+	private static final int DATABASE_VERSION = 1;
+	private static final String DATABASE_NAME = "rememberme.db";
 
 	public static final String NOTES_TABLE_NAME = "notes";
 //	private static final String LISTS_TABLE_NAME = "lists";
@@ -48,7 +48,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS users");
 		onCreate(db);
 	}

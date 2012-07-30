@@ -10,6 +10,8 @@
     <string name="tv_remember_list">Remember list</string>
     <string name="tv_length_max">Max:160</string>
     <string name="tv_chars">chars</string>
+    <string name="enter_some_text">Please enter something!</string>
+    <string name="added">Added</string>
 
     <string name="template_user_agent">ss (Linux Android)</string>
     <string name="template_wotd_title">WiktionaryWord of the day s s</string>

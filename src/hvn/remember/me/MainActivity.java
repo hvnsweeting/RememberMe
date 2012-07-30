@@ -6,43 +6,73 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.net.Uri;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
 	DatabaseOpenHelper mDatabaseOpenHelper;
 	private ListView mListView;
+	private EditText mEditText;
+	private Button mButton;
+	private DatabaseHandler mDBHandler;
+	SimpleCursorAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mDatabaseOpenHelper = new DatabaseOpenHelper(getApplicationContext());
-		setContentView(R.layout.main);
-		mDatabaseOpenHelper.openDataBase();
-		mDatabaseOpenHelper.closeDataBase();
+		mDBHandler = new DatabaseHandler(getApplicationContext());
 
-		Uri mUri = getContentResolver().insert(NoteColumns.CONTENT_URI, null);
-		Log.d("hvn.remember.me", "MainActivity:onCreate" + mUri);
+		setContentView(R.layout.main);
+
+		mEditText = (EditText) findViewById(R.id.et_input);
+		mButton = (Button) findViewById(R.id.btn_add);
+		mButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				String enteredText = mEditText.getText().toString();
+				if (enteredText == null || enteredText.equalsIgnoreCase("")) {
+					Toast.makeText(getBaseContext(), R.string.enter_some_text,
+							Toast.LENGTH_SHORT).show();
+				} else {
+					mDBHandler.addNote(new NoteData(0, enteredText));
+					Toast.makeText(getBaseContext(), R.string.added,
+							Toast.LENGTH_SHORT).show();
+					// TODO reload, clear et
+					mEditText.setText("");
+
+					Cursor c = mDBHandler.getAllNotes();
+					adapter.changeCursor(c);
+					// adapter.notifyDataSetChanged();
+
+				}
+			}
+		});
 
 		mListView = (ListView) findViewById(R.id.note_list);
-		ArrayList<NoteData> notes = new ArrayList<NoteData>();
-		notes.add(new NoteData("I'm HVN", 0));
-		notes.add(new NoteData(
-				"We cannot solve our problems with the same thinking we used when we created them - Albert Einstein",
-				1));
-		notes.add(new NoteData(
-				"The purpose of our lives is to be happy. - Dalai Lama", 2));
 
-		NoteListAdapter adapter = new NoteListAdapter(MainActivity.this,
-				R.layout.note_list_item, notes);
+		Cursor c = mDBHandler.getAllNotes();
+		startManagingCursor(c);
+		String[] columns = new String[] { NoteColumns.CONTENT };
+
+		int to[] = new int[] { android.R.id.text1 };
+		adapter = new SimpleCursorAdapter(getBaseContext(),
+				android.R.layout.simple_list_item_1, c, columns, to);
+		// NoteListAdapter adapter = new NoteListAdapter(MainActivity.this,
+		// R.layout.note_list_item, notes);
 		mListView.setAdapter(adapter);
 	}
 
